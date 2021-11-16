@@ -10,8 +10,8 @@ import javax.swing.plaf.basic.BasicArrowButton;
 import java.io.IOException;
 
 public class Game {
-    private int x = 10;
-    private int y = 10;
+    Position position= new Position(10,10);
+    Hero hero= new Hero(position);
     Screen screen;
     public Game() {
         try {
@@ -24,16 +24,19 @@ public class Game {
             e.printStackTrace();
         }
     }
-        private void draw () {
+    private void moveHero(Position position) {
+        hero.setPosition(position);
+    }
+        private void draw (){
             screen.clear();
-            screen.setCharacter(x, y, TextCharacter.fromCharacter('X')[0]);
+            hero.draw(screen);
             try {
                 screen.refresh();
-            } catch (IOException e) {        //Need to understand exceptions
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-        public void run () {
+        public void run (){
             while(1==1) {
                 draw();
                 try {
@@ -42,18 +45,16 @@ public class Game {
                     if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'q') screen.close();
                     switch (key.getKeyType()) {
                         case ArrowUp:
-                            y -= 1;
+                            moveHero(hero.moveUp());
                             break;
-
                         case ArrowDown:
-                            y += 1;
+                            moveHero(hero.moveDown());
                             break;
-
                         case ArrowLeft:
-                            x -= 1;
+                            moveHero(hero.moveLeft());
                             break;
                         case ArrowRight:
-                            x += 1;
+                            moveHero(hero.moveRight());
                             break;
                     }
                 } catch (IOException e) {
