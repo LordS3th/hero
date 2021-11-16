@@ -10,7 +10,7 @@ import javax.swing.plaf.basic.BasicArrowButton;
 import java.io.IOException;
 
 public class Game {
-    Arena arena = new Arena(10, 10);
+    Arena arena = new Arena(20, 10);
     Screen screen;
 
     public Game() {
@@ -31,7 +31,7 @@ public class Game {
 
     private void draw() {
         screen.clear();
-        arena.draw(screen);
+        arena.draw(screen.newTextGraphics());
         try {
             screen.refresh();
         } catch (IOException e) {
