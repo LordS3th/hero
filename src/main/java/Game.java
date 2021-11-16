@@ -10,9 +10,9 @@ import javax.swing.plaf.basic.BasicArrowButton;
 import java.io.IOException;
 
 public class Game {
-    Position position= new Position(10,10);
-    Hero hero= new Hero(position);
+    Arena arena = new Arena(10, 10);
     Screen screen;
+
     public Game() {
         try {
             Terminal terminal = new DefaultTerminalFactory().createTerminal();
@@ -24,42 +24,32 @@ public class Game {
             e.printStackTrace();
         }
     }
-    private void moveHero(Position position) {
-        hero.setPosition(position);
+
+    private void processKey(KeyStroke key) {
+        arena.processKey(key);
     }
-        private void draw (){
-            screen.clear();
-            hero.draw(screen);
+
+    private void draw() {
+        screen.clear();
+        arena.draw(screen);
+        try {
+            screen.refresh();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void run() {
+        while (1 == 1) {
+            draw();
             try {
-                screen.refresh();
+                KeyStroke key = screen.readInput();
+                if (key.getKeyType() == KeyType.EOF) break;
+                if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'q') screen.close();
+                processKey(key);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-        public void run (){
-            while(1==1) {
-                draw();
-                try {
-                    KeyStroke key = screen.readInput();
-                    if (key.getKeyType()==KeyType.EOF) break;
-                    if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'q') screen.close();
-                    switch (key.getKeyType()) {
-                        case ArrowUp:
-                            moveHero(hero.moveUp());
-                            break;
-                        case ArrowDown:
-                            moveHero(hero.moveDown());
-                            break;
-                        case ArrowLeft:
-                            moveHero(hero.moveLeft());
-                            break;
-                        case ArrowRight:
-                            moveHero(hero.moveRight());
-                            break;
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
     }
 }
