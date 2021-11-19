@@ -6,14 +6,9 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
 
-public class Hero {
-    private Position position;
-    public Hero(Position position){
-        this.position=position;
-    }
-    void setPosition(Position position){
-        this.position.setX(position.getX());
-        this.position.setY(position.getY());
+class Hero extends Element {
+    Hero(Position position) {
+        super(position);
     }
     public void draw(TextGraphics graphics) {
         graphics.setForegroundColor(TextColor.Factory.fromString("#FF0000"));

@@ -14,18 +14,22 @@ public class Arena {
     private int width;
     private int height;
     Position position = new Position(10, 8);
-    Hero hero = new Hero(position);
+    Hero hero = new Hero( position );
     private List<Wall> walls;
 
     private List<Wall> createWalls() {
         List<Wall> walls = new ArrayList<>();
         for (int c = 0; c < width; c++) {
-            walls.add(new Wall(c, 0));
-            walls.add(new Wall(c, height - 1));
+            Position position_1=new Position(c,0);
+            walls.add(new Wall(position_1));
+            Position position_2=new Position(c,height-1);
+            walls.add(new Wall(position_2));
         }
         for (int r = 1; r < height - 1; r++) {
-            walls.add(new Wall(0, r));
-            walls.add(new Wall(width - 1, r));
+            Position position_3=new Position(0,r);
+            walls.add(new Wall(position_3));
+            Position position_4=new Position(width-1, r);
+            walls.add(new Wall(position_4));
         }
         return walls;
     }

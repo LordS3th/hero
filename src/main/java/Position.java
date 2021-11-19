@@ -5,10 +5,10 @@ public class Position {
         this.x=x;
         this.y=y;
     }
-    public int getX(){
+    public int getX() {
     return x;
     }
-    public int getY(){
+    public int getY() {
     return y;
     }
     void setX(int x){
