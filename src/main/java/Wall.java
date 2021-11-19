@@ -20,4 +20,8 @@ public class Wall {
         graphics.enableModifiers(SGR.BOLD);
         graphics.putString(new TerminalPosition(x, y),"W");
     }
+    public Position getPosition() {
+        Position position = new Position (x,y);
+        return position;
+    }
 }

@@ -68,23 +68,18 @@ public class Arena {
     }
 
     boolean canHeroMove(Position position) {
+        for (Wall wall:walls){
+            if (wall.getPosition().equals(position)){
+                return false;
+            }
+        }
         if (position.getX() > width || position.getX() < 0) {
             return false;
         } else if (position.getY() > height || position.getY() < 0) {
             return false;
         }
-        else if  (wall.getPosition().equals(position)){
-            return false;
-        }
-            else return true;
-    }
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null) return false;
-        if (getClass() != o.getClass()) return false;
-        Position p = (Position) o;
-        return x== p.getX() && y== p.getY();
+        else return true;
     }
 }
+
 
