@@ -9,6 +9,7 @@ import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Arena {
     private int width;
@@ -16,6 +17,7 @@ public class Arena {
     Position position = new Position(10, 8);
     Hero hero = new Hero( position );
     private List<Wall> walls;
+    private List<Coins> coins;
 
     private List<Wall> createWalls() {
         List<Wall> walls = new ArrayList<>();
@@ -33,11 +35,20 @@ public class Arena {
         }
         return walls;
     }
-
+    private List<Coins> createCoins() {
+        Random random = new Random();
+        ArrayList<Coins> coins = new ArrayList<>();
+        for (int i = 0; i < 5; i++){
+            Position position_5= new Position(random.nextInt(width - 2) + 1,random.nextInt(height - 2) + 1);
+            coins.add(new Coins(position_5));
+        }
+        return coins;
+    }
     public Arena(int width, int height) {
         this.width = width;
         this.height = height;
         this.walls = createWalls();
+        this.coins = createCoins();
     }
 
     public void draw(TextGraphics graphics) {
@@ -46,6 +57,9 @@ public class Arena {
         hero.draw(graphics);
         for (Wall wall : walls) {
             wall.draw(graphics);
+        }
+        for (Coins coin: coins){
+            coin.draw(graphics);
         }
     }
 
