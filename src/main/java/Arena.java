@@ -83,6 +83,7 @@ public class Arena {
     public void moveHero(Position position) {
         if (canHeroMove(position))
             hero.setPosition(position);
+            retrieveCoins();
     }
 
     boolean canHeroMove(Position position) {
@@ -97,6 +98,14 @@ public class Arena {
             return false;
         }
         else return true;
+    }
+    public void retrieveCoins(){
+        for(Coins coin:coins){
+            if (coin.getPosition().equals(position)){
+                coins.remove(coin);
+                break;
+            }
+        }
     }
 }
 
