@@ -67,15 +67,19 @@ public class Arena {
         switch (key.getKeyType()) {
             case ArrowUp:
                 moveHero(hero.moveUp());
+                moveMonsters();
                 break;
             case ArrowDown:
                 moveHero(hero.moveDown());
+                moveMonsters();
                 break;
             case ArrowLeft:
                 moveHero(hero.moveLeft());
+                moveMonsters();
                 break;
             case ArrowRight:
                 moveHero(hero.moveRight());
+                moveMonsters();
                 break;
         }
     }
@@ -106,6 +110,9 @@ public class Arena {
                 break;
             }
         }
+    }
+    public void moveMonsters(){
+
     }
 }
 
