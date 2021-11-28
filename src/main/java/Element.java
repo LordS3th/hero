@@ -10,7 +10,7 @@ abstract class Element {
         this.position.setX(position.getX());
         this.position.setY(position.getY());
     }
-    public Position getPosition() {
+    public Position getPosition(){
         return position;
     }
 }

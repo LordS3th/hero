@@ -18,6 +18,14 @@ public class Arena {
     Hero hero = new Hero( position );
     private List<Wall> walls;
     private List<Coins> coins;
+    private List<Monster> monsters;
+    public Arena(int width, int height) {
+        this.width = width;
+        this.height = height;
+        this.walls = createWalls();
+        this.coins = createCoins();
+        this.monsters=createMonsters();
+    }
 
     private List<Wall> createWalls() {
         List<Wall> walls = new ArrayList<>();
@@ -44,13 +52,15 @@ public class Arena {
         }
         return coins;
     }
-    public Arena(int width, int height) {
-        this.width = width;
-        this.height = height;
-        this.walls = createWalls();
-        this.coins = createCoins();
+    private List<Monster> createMonsters() {
+        Random random = new Random();
+        ArrayList<Monster> monsters = new ArrayList<>();
+        for (int i = 0; i < 5; i++){
+            Position position_5= new Position(random.nextInt(width - 2) + 1,random.nextInt(height - 2) + 1);
+            monsters.add(new Monster(position_5));
+        }
+        return monsters;
     }
-
     public void draw(TextGraphics graphics) {
         graphics.setBackgroundColor(TextColor.Factory.fromString("#220287"));
         graphics.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(width, height), ' ');
@@ -60,6 +70,9 @@ public class Arena {
         }
         for (Coins coin: coins){
             coin.draw(graphics);
+        }
+        for (Monster monster: monsters){
+            monster.draw(graphics);
         }
     }
 
@@ -112,8 +125,12 @@ public class Arena {
         }
     }
     public void moveMonsters(){
+        for (Monster monster:monsters){
+            monster.move();
+        }
+    }
+    public void verifyMonsterCollisions(){
 
     }
 }
-
 

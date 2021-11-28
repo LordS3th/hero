@@ -10,7 +10,7 @@ class Monster extends Element {
         super(position);
     }
     public void draw(TextGraphics graphics){
-        graphics.setForegroundColor(TextColor.Factory.fromString("#18191A"));
+        graphics.setForegroundColor(TextColor.Factory.fromString("#00FF00"));
         graphics.enableModifiers(SGR.BOLD);
         graphics.putString(new TerminalPosition(position.getX(), position.getY()),"M");
     }
